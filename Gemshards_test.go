@@ -19,3 +19,24 @@ func TestGenerators(t *testing.T) {
 		}
 	}
 }
+
+func TestResults(t *testing.T) {
+	gen := Gem{EpochOffset: 15730518251008800, GemID: 12}
+	arrGen := [100000]uint64{}
+	for uniqid := 0; uniqid < 100000; uniqid++ {
+		shard := gen.Generate()
+		arrGen[uniqid] = shard.ID
+		if shard.ID < 0 {
+			t.Errorf("Got negative value %d, unsignedwtf", shard.ID)
+		}
+	}
+
+	for A, a := range arrGen {
+		for B, b := range arrGen {
+			if a == b && A != B {
+				t.Errorf("Duplication found, %d with index %d is equal to %d with index %d", a, A, b, B)
+			}
+		}
+	}
+}
+
