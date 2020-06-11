@@ -40,3 +40,10 @@ func TestResults(t *testing.T) {
 	}
 }
 
+func BenchmarkGenerator(b *testing.B) {
+	gen := Gem{EpochOffset: 15730518251008800, GemID: 10}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		gen.Generate()
+	}
+}
