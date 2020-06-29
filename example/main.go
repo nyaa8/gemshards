@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"nyaa.science/gemshards"
+	"pkg.nyaa.science/gemshards"
 )
 
 func main() {
